@@ -1,0 +1,4 @@
+import sqlite3
+
+conexion = sqlite3.connect('quelite.db')
+conexion.text_fact
