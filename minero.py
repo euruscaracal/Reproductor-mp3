@@ -1,30 +1,60 @@
+import eyed3
 import os
+class minero:
 
-class mp3:
 
     def __init__(self):
-        self.i = 0
+        self.listasa = []
+        '/home/rominacaracal/Escritorio/Reproductor/testFiles/Music'
+        self.listad = os.walk('/home/rominacaracal/Escritorio/Reproductor/testFiles/Music')
 
     def crea(self):
         nuevaruta = r'ruta/al/directorio/directorio'
         if not os.path.exists(nuevaruta): os.makedirs(nuevaruta)
 
-    #recorrer directorio
-    def busca(self):
-        rootDir = ''
-        for dirName, subdirList, fileList in os.walk(rootDir):
-            print('Directorio encontrado: %s' % dirName)
-            for fname in fileList:
-                print('\t%s' % fname)
-
     #existe un directorio
-    def existedirectorio(self):
+    def existeDirectorio(self):
         try:
            f = open("foo.txt")
         except IOError as e:
            print("Uh oh! Esto no existe")
 
-k = mp3()
+    def identifyMp3(self):
+        for root, dirs, files in self.listad:
+            for fichero in files:
+                (nombreFichero, extension) = os.path.splitext(fichero)
+                if(extension == ".mp3"):
+                    self.listasa.append(nombreFichero+extension)
+        return self.listasa
+
+    def getTags(self):
+
+        o = self.identifyMp3()
+        for i in o:
+            song = eyed3.load('/home/rominacaracal/Escritorio/Reproductor/testFiles/Music/' + i)
+            print('Titulo: ', song.tag.title)
+            print('Artist: ', song.tag.artist)
+            print('Year: ' , song.tag.release_date)
+            print('Track: ' , song.tag.track_num)
+            print('Genre: ' , song.tag.genre)
+
+
+
+
+    #def modtags(self):
+        #song = eye3.load('/home/rominacaracal/Escritorio/Reproductor/testFiles/Music')
+
+        #song.tag.title = "Nuevo valor"
+        #song.tag.artist = "Nuevo objeto"
+
+        #song.tag.save()
+
+
+
+
+
+k = minero()
 k.crea()
-k.busca()
-k.existedirectorio()
+k.identifyMp3()
+k.getTags()
+#k.busca()
