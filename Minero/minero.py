@@ -39,22 +39,7 @@ class minero:
             print('Genre: ' , song.tag.genre)
 
 
-
-
-    #def modtags(self):
-        #song = eye3.load('/home/rominacaracal/Escritorio/Reproductor/testFiles/Music')
-
-        #song.tag.title = "Nuevo valor"
-        #song.tag.artist = "Nuevo objeto"
-
-        #song.tag.save()
-
-
-
-
-
-k = minero()
-k.crea()
-k.identifyMp3()
-k.getTags()
-#k.busca()
+m = minero()
+m.crea()
+m.identifyMp3()
+m.getTags()
